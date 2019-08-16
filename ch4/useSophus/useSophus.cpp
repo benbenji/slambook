@@ -19,7 +19,10 @@ int main( int argc, char** argv )
     Sophus::SO3 SO3_q( q );
     // 上述表达方式都是等价的
     // 输出SO(3)时，以so(3)形式输出
-    cout<<"SO(3) from matrix: "<<SO3_R<<endl;
+    cout<<"SO(3) from matrix: "<<R.matrix()<<endl;
+    cout<<"test:"<<R.matrix()*R.matrix().transpose()<<endl;
+    cout<<"SO(3) from matrix: "<<SO3_R.matrix()<<endl;
+    cout<<"haha"<<endl;
     cout<<"SO(3) from vector: "<<SO3_v<<endl;
     cout<<"SO(3) from quaternion :"<<SO3_q<<endl;
     
@@ -56,7 +59,7 @@ int main( int argc, char** argv )
     // 最后，演示一下更新
     Vector6d update_se3; //更新量
     update_se3.setZero();
-    update_se3(0,0) = 1e-4d;
+    update_se3(0,0) = 1e-4;
     Sophus::SE3 SE3_updated = Sophus::SE3::exp(update_se3)*SE3_Rt;
     cout<<"SE3 updated = "<<endl<<SE3_updated.matrix()<<endl;
     
